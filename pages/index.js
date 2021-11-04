@@ -36,7 +36,7 @@ export default function Home() {
               <div className='flex justify-center bg-gray-500 p-5 rounded-2xl'>
                   {
                       videoId ?
-                      <YouTube videoId={videoId} opts={opts} className='flex-grow'/> :
+                      <YouTube videoId={videoId} opts={opts} className='flex-grow max-w-full'/> :
                       <span className='font-semibold text-lg'>
                           {
                               wasInvalidTry ?
