@@ -9,14 +9,14 @@ export default function Home() {
     };
 
     return (
-      <div className='bg-yellow-300 flex justify-center'>
+      <div className='bg-gray-800 flex justify-center'>
           <div className='max-w-2xl flex-grow mt-10 flex flex-col'>
               <input
                   type='text'
                   placeholder='Paste video link there'
-                  className='mb-16 rounded-2xl p-2 pl-4 border focus:border-blue-600 text-gray-700 shadow text-lg appearance-none font-semibold focus:outline-none focus:shadow-outline'
+                  className='mb-16 rounded-2xl p-2 pl-4 border focus:border-blue-600 text-gray-800 shadow text-lg appearance-none font-semibold focus:outline-none focus:shadow-outline'
               />
-              <div className='flex justify-center'>
+              <div className='flex justify-center bg-gray-500 p-5 rounded-2xl'>
                   <YouTube videoId="1PetRVcM2sk" opts={opts} className='flex-grow'/>
               </div>
           </div>
