@@ -60,7 +60,7 @@ export default function Home() {
 }
 
 function isYouTubeVideo(url) {
-    const youtubeVideoRegex = new RegExp("^((?:https?:)?\\/\\/)?((?:www|m)\\.)?((?:youtube\\.com|youtu.be))(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$");
+    const youtubeVideoRegex = new RegExp("^((?:https?:)?\\/\\/)?((?:www|m)\\.)?(?:youtube\\.com|youtu.be)(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$");
     return youtubeVideoRegex.test(url);
 }
 
