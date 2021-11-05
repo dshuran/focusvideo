@@ -43,15 +43,12 @@ export default function Home() {
               <div className={`flex justify-center bg-gray-500 p-5 rounded-2xl ${invalidUrlVideoBlockClassnames}`}>
                   {
                       videoId ?
-                      <YouTube videoId={videoId} opts={opts} className='flex-grow max-w-full'/> :
-                      <span className='font-semibold text-lg'>
-                          {
+                          <YouTube videoId={videoId} opts={opts} className='flex-grow max-w-full'/> :
+                          (
                               wasInvalidTry ?
-                                  "Try pasting valid youtube video url!" :
-                                  "Video will be loaded here :)"
-                          }
-
-                      </span>
+                                  <span className='font-semibold text-lg text-yellow-400'>Try pasting valid youtube video url!</span> :
+                                  <span className='font-semibold text-lg'>Video will be loaded here :)</span>
+                          )
                   }
               </div>
           </div>
