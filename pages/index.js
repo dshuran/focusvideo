@@ -78,7 +78,7 @@ export default function Home() {
               </div>
               <a
                   href='https://t.me/dovideo'
-                  className='bg-gray-500 p-5 rounded-2xl mt-auto mb-5 text-lg font-medium flex justify-center hover:bg-green-600'>
+                  className='bg-gray-500 p-1 rounded-2xl mt-auto mb-5 text-lg font-medium flex justify-center hover:bg-green-600'>
                   <span className='text-yellow-400'>Leave feedback</span>
               </a>
           </div>
