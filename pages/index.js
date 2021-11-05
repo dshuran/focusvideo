@@ -1,28 +1,53 @@
 import YouTube from "react-youtube";
-import {useState} from "react";
+import { useState, useCallback } from "react";
+
+const YOUTUBE_OPTIONS = {
+  playerVars: {
+    // https://developers.google.com/youtube/player_parameters
+    autoplay: 1,
+    rel: 0,
+  },
+};
+
+const YOUTUBE_VIDEO_REGEX =
+  /^((?:https?:)?\/\/)?((?:www|m)\.)?(?:youtube\.com|youtu.be)(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/;
+
+/**
+ * @param {string} url
+ * @returns {boolean}
+ */
+function isYouTubeVideoUrl(url) {
+  return YOUTUBE_VIDEO_REGEX.test(url);
+}
+
+/**
+ * @param {string} url
+ * @returns {string}
+ */
+function getYouTubeVideoID(url) {
+  url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+  return url[2] !== undefined ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+}
 
 export default function Home() {
-    const opts = {
-        playerVars: {
-            // https://developers.google.com/youtube/player_parameters
-            autoplay: 1,
-            rel: 0
-        },
-    };
+  const [videoId, setVideoId] = useState(null);
+  const [wasInvalidTry, setInvalidTry] = useState(false);
 
-    const [videoId, setVideoId] = useState('');
-    const [wasInvalidTry, setInvalidTry] = useState(false);
+  const handleInputChange = useCallback(
+    (event) => {
+      const url = event.target.value;
 
-    const handleInputChange = (e) => {
-        const url = e.target.value;
-        if (isYouTubeVideo(url)) {
-            const videoId = getYouTubeVideoID(e.target.value);
-            setVideoId(videoId);
-            setInvalidTry(false);
-        } else {
-            setInvalidTry(true)
-        }
-    }
+      if (!isYouTubeVideoUrl(url)) {
+        setInvalidTry(true);
+        return;
+      }
+
+      const videoId = getYouTubeVideoID(url);
+      setVideoId(videoId);
+      setInvalidTry(false);
+    },
+    [setVideoId, setInvalidTry]
+  );
 
     const invalidUrlVideoBlockClassnames = wasInvalidTry ? 'border border-red-500' : '';
 
@@ -43,7 +68,7 @@ export default function Home() {
               <div className={`flex justify-center bg-gray-500 p-5 rounded-2xl ${invalidUrlVideoBlockClassnames}`}>
                   {
                       videoId ?
-                          <YouTube videoId={videoId} opts={opts} className='flex-grow max-w-full'/> :
+                          <YouTube videoId={videoId} opts={YOUTUBE_OPTIONS} className='flex-grow max-w-full'/> :
                           (
                               wasInvalidTry ?
                                   <span className='font-semibold text-lg text-yellow-400'>Try pasting valid youtube video url!</span> :
@@ -59,14 +84,4 @@ export default function Home() {
           </div>
       </div>
     )
-}
-
-function isYouTubeVideo(url) {
-    const youtubeVideoRegex = new RegExp("^((?:https?:)?\\/\\/)?((?:www|m)\\.)?(?:youtube\\.com|youtu.be)(\\/(?:[\\w\\-]+\\?v=|embed\\/|v\\/)?)([\\w\\-]+)(\\S+)?$");
-    return youtubeVideoRegex.test(url);
-}
-
-function getYouTubeVideoID(url){
-    url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
-    return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
 }
