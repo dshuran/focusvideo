@@ -24,16 +24,23 @@ export default function Home() {
         }
     }
 
+    const invalidUrlVideoBlockClassnames = wasInvalidTry ? 'border border-red-500' : '';
+
     return (
       <div className='bg-gray-800 flex justify-center'>
           <div className='max-w-2xl flex-grow mt-10 flex flex-col'>
+              <span
+                  className='text-lg font-semibold text-yellow-500 pb-2 pl-4'
+              >
+                  Paste youtube video link there and enjoy!
+              </span>
               <input
                   type='text'
-                  placeholder='Paste youtube video link there and enjoy!'
+                  placeholder='example: https://www.youtube.com/watch?v=1PetRVcM2sk'
                   onChange={handleInputChange}
                   className='mb-16 rounded-2xl p-2 pl-4 border focus:border-blue-600 text-gray-800 shadow text-lg appearance-none font-semibold focus:outline-none focus:shadow-outline'
               />
-              <div className='flex justify-center bg-gray-500 p-5 rounded-2xl'>
+              <div className={`flex justify-center bg-gray-500 p-5 rounded-2xl ${invalidUrlVideoBlockClassnames}`}>
                   {
                       videoId ?
                       <YouTube videoId={videoId} opts={opts} className='flex-grow max-w-full'/> :
@@ -41,7 +48,7 @@ export default function Home() {
                           {
                               wasInvalidTry ?
                                   "Try pasting valid youtube video url!" :
-                                  "Just paste the youtube video url above and enjoy :)"
+                                  "Video will be loaded here :)"
                           }
 
                       </span>
