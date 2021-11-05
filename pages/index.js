@@ -32,7 +32,7 @@ export default function Home() {
               <span
                   className='text-lg font-semibold text-yellow-500 pb-2 pl-4'
               >
-                  Paste youtube video link there and enjoy!
+                  Focus on youtube video without any distractions!
               </span>
               <input
                   type='text'
@@ -51,6 +51,11 @@ export default function Home() {
                           )
                   }
               </div>
+              <a
+                  href='https://t.me/dovideo'
+                  className='bg-gray-500 p-5 rounded-2xl mt-auto mb-5 text-lg font-medium flex justify-center hover:bg-green-600'>
+                  <span className='text-yellow-400'>Leave feedback</span>
+              </a>
           </div>
       </div>
     )
