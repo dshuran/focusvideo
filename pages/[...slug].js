@@ -1,6 +1,8 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import YouTube from "react-youtube";
 import { useYoutubeVideoIdState } from "../hooks/useYoutubeVideoIdState";
+import { isYouTubeVideoUrl } from "../utils/isYouTubeVideoUrl";
+import { parsePossibleYoutubeUrl } from "../utils/parsePossibleYoutubeUrl";
 
 const YOUTUBE_OPTIONS = {
   playerVars: {
@@ -10,7 +12,13 @@ const YOUTUBE_OPTIONS = {
   },
 };
 
-export default function Home() {
+/**
+ * @param {{
+ *   url: string | null
+ * }} props
+ * @returns {JSX.Element}
+ */
+export default function Home({ url }) {
   const { videoId, wasInvalidTry, setYoutubeVideoUrl } =
     useYoutubeVideoIdState();
 
@@ -20,6 +28,12 @@ export default function Home() {
     },
     [setYoutubeVideoUrl]
   );
+
+  useEffect(() => {
+    if (!url) return;
+
+    setYoutubeVideoUrl(url);
+  }, [url, setYoutubeVideoUrl]);
 
   const invalidUrlVideoBlockClassnames = wasInvalidTry
     ? "border border-red-500"
@@ -65,4 +79,27 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+/**
+ *
+ * @param {import('next').GetServerSidePropsContext<{ slug: string }>} context
+ * @return {import('next').GetServerSidePropsResult<{ url: string | null }>}
+ */
+export function getServerSideProps(context) {
+  const possiblyYoutubeUrl = parsePossibleYoutubeUrl(context.req.url);
+
+  if (possiblyYoutubeUrl && isYouTubeVideoUrl(possiblyYoutubeUrl)) {
+    return {
+      props: {
+        url: possiblyYoutubeUrl,
+      },
+    };
+  }
+
+  return {
+    props: {
+      url: null,
+    },
+  };
 }

@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { getYouTubeVideoID } from "../utils/getYouTubeVideoID";
 import { isYouTubeVideoUrl } from "../utils/isYouTubeVideoUrl";
 
 /**
- *
  * @callback SetYoutubeVideoUrlCallback
  * @param {string} url
  * @returns {void} sets url
@@ -17,7 +16,7 @@ import { isYouTubeVideoUrl } from "../utils/isYouTubeVideoUrl";
 export function useYoutubeVideoIdState() {
   const [videoUrl, setYoutubeVideoUrl] = useState("");
 
-  const wasInvalidTry = useMemo(() => isYouTubeVideoUrl(videoUrl), [videoUrl]);
+  const wasInvalidTry = useMemo(() => !isYouTubeVideoUrl(videoUrl), [videoUrl]);
 
   const videoId = useMemo(
     () => (wasInvalidTry ? null : getYouTubeVideoID(videoUrl)),
