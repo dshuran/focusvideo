@@ -4,7 +4,7 @@ const MATCH_PROTOCOL = /(https?):\/+(.*)/;
  * @param {string} search
  * @returns {string | null} parsedUrl
  */
-export function parsePossibleYoutubeUrl(search) {
+export function searchStringToUrl(search) {
   const m = MATCH_PROTOCOL.exec(search);
 
   if (!m) return null;
