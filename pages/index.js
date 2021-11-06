@@ -1,7 +1,6 @@
+import { useCallback } from "react";
 import YouTube from "react-youtube";
-import { useState, useCallback } from "react";
-import { getYouTubeVideoID } from "../utils/getYouTubeVideoID";
-import { isYouTubeVideoUrl } from "../utils/isYouTubeVideoUrl";
+import { useYoutubeVideoIdState } from "../hooks/useYoutubeVideoIdState";
 
 const YOUTUBE_OPTIONS = {
   playerVars: {
@@ -12,23 +11,14 @@ const YOUTUBE_OPTIONS = {
 };
 
 export default function Home() {
-  const [videoId, setVideoId] = useState(null);
-  const [wasInvalidTry, setInvalidTry] = useState(false);
+  const { videoId, wasInvalidTry, setYoutubeVideoUrl } =
+    useYoutubeVideoIdState();
 
   const handleInputChange = useCallback(
     (event) => {
-      const url = event.target.value;
-
-      if (!isYouTubeVideoUrl(url)) {
-        setInvalidTry(true);
-        return;
-      }
-
-      const videoId = getYouTubeVideoID(url);
-      setVideoId(videoId);
-      setInvalidTry(false);
+      setYoutubeVideoUrl(event.target.value);
     },
-    [setVideoId, setInvalidTry]
+    [setYoutubeVideoUrl]
   );
 
   const invalidUrlVideoBlockClassnames = wasInvalidTry
