@@ -1,4 +1,4 @@
-import FocusPage from "../components/FocusPage";
+import FocusPage from "../src/components/FocusPage";
 
 export default function FocusPageWithoutUrlFromQuery() {
   return <FocusPage url={null} />;
