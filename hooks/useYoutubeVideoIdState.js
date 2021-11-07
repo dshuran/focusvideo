@@ -16,7 +16,10 @@ import { isYouTubeVideoUrl } from "../utils/isYouTubeVideoUrl";
 export function useYoutubeVideoIdState() {
   const [videoUrl, setYoutubeVideoUrl] = useState("");
 
-  const wasInvalidTry = useMemo(() => !isYouTubeVideoUrl(videoUrl), [videoUrl]);
+  const wasInvalidTry = useMemo(
+    () => videoUrl && !isYouTubeVideoUrl(videoUrl),
+    [videoUrl]
+  );
 
   const videoId = useMemo(
     () => (wasInvalidTry ? null : getYouTubeVideoID(videoUrl)),
