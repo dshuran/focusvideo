@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react";
 import YouTube from "react-youtube";
 import { useYoutubeVideoIdState } from "../hooks/useYoutubeVideoIdState";
+import {UrlEdit} from "./UrlEdit";
 
 const YOUTUBE_OPTIONS = {
   playerVars: {
@@ -38,16 +39,8 @@ export default function FocusPage({ url }) {
 
   return (
     <div className="bg-neutral-800 flex justify-center">
-      <div className="max-w-2xl flex-grow mt-10 flex flex-col">
-        <span className="text-lg font-semibold text-yellow-500 pb-2 pl-4">
-          Focus on youtube video without any distractions!
-        </span>
-        <input
-          type="text"
-          placeholder="example: https://www.youtube.com/watch?v=1PetRVcM2sk"
-          onChange={handleInputChange}
-          className="mb-16 rounded-2xl p-2 pl-4 border focus:border-blue-600 text-gray-800 shadow text-lg appearance-none font-semibold focus:outline-none focus:shadow-outline"
-        />
+      <div className="max-w-5xl flex-grow mt-10 flex flex-col justify-center">
+        <UrlEdit handleInputChange={handleInputChange}/>
         <div
           className={`flex justify-center bg-gray-500 p-5 rounded-2xl ${invalidUrlVideoBlockClassnames}`}
         >
@@ -69,7 +62,7 @@ export default function FocusPage({ url }) {
         </div>
         <a
           href="https://t.me/dovideo"
-          className="bg-gray-500 p-1 rounded-2xl mt-auto mb-5 text-lg font-medium flex justify-center hover:bg-green-600"
+          className="bg-gray-500 p-1 rounded-2xl mt-6 mb-5 text-lg font-medium flex justify-center hover:bg-green-600"
         >
           <span className="text-yellow-400">Leave feedback</span>
         </a>
