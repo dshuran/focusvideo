@@ -29,7 +29,7 @@ export default function FocusPage({ url }: {url: string}) {
 
   return (
     <div className="bg-neutral-800 flex justify-center">
-      <div className="max-w-5xl flex-grow flex flex-col justify-center">
+      <div className="max-w-5xl flex-grow flex flex-col justify-center p-2">
         <UrlEdit handleInputChange={handleInputChange}/>
         <VideoBlock videoId={videoId} wasInvalidTry={wasInvalidTry}/>
       </div>
