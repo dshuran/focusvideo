@@ -1,8 +1,14 @@
-export function UrlEdit(props) {
+import {ChangeEvent} from "react";
+
+interface IProps {
+    handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}
+
+export function UrlEdit(props: IProps) {
 
     return (
         <div className="flex flex-col">
-            <span className="text-sm font-semibold text-neutral-300 pb-2">
+            <span className="text-sm font-semibold text-neutraql-300 pb-2">
                 Watch video without distractions!
             </span>
             <input

@@ -2,8 +2,9 @@ import { useCallback, useEffect } from "react";
 import YouTube from "react-youtube";
 import { useYoutubeVideoIdState } from "../hooks/useYoutubeVideoIdState";
 import {UrlEdit} from "./UrlEdit";
+import {Options as YouTubeVideoOptions} from "react-youtube";
 
-const YOUTUBE_OPTIONS = {
+const YOUTUBE_OPTIONS: YouTubeVideoOptions = {
   playerVars: {
     // https://developers.google.com/youtube/player_parameters
     autoplay: 1,
@@ -16,7 +17,7 @@ const YOUTUBE_OPTIONS = {
  * }} props
  * @returns {JSX.Element}
  */
-export default function FocusPage({ url }) {
+export default function FocusPage({ url }: {url: string}) {
   const { videoId, wasInvalidTry, setYoutubeVideoUrl } =
     useYoutubeVideoIdState();
 
