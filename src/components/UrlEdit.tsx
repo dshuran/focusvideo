@@ -15,7 +15,7 @@ export function UrlEdit(props: IProps) {
                 type="text"
                 placeholder="https://www.youtube.com/watch?v=1PetRVcM2sk"
                 onChange={props.handleInputChange}
-                className="border-white border-b mb-16 bg-inherit pb-1 leading-3 pl-0 text-gray-200 placeholder:text-gray-700 shadow text-3xl appearance-none font-semibold focus:outline-none focus:shadow-outline"
+                className="border-white border-b bg-inherit pb-1 leading-3 pl-0 text-gray-200 placeholder:text-neutral-700 shadow text-3xl appearance-none font-semibold focus:outline-none focus:shadow-outline"
             />
         </div>
     )
