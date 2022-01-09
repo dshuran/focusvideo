@@ -7,6 +7,7 @@ const YOUTUBE_OPTIONS: YouTubeVideoOptions = {
         autoplay: 1,
         rel: 0,
     },
+    width: '2000',
 };
 
 interface IProps {
