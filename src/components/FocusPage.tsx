@@ -32,12 +32,6 @@ export default function FocusPage({ url }: {url: string}) {
       <div className="max-w-5xl flex-grow mt-10 flex flex-col justify-center">
         <UrlEdit handleInputChange={handleInputChange}/>
         <VideoBlock videoId={videoId} wasInvalidTry={wasInvalidTry}/>
-        <a
-          href="https://t.me/dovideo"
-          className="bg-gray-500 p-1 rounded-2xl mt-6 mb-5 text-lg font-medium flex justify-center hover:bg-green-600"
-        >
-          <span className="text-yellow-400">Leave feedback</span>
-        </a>
       </div>
     </div>
   );
