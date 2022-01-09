@@ -4,6 +4,6 @@ const YOUTUBE_VIDEO_REGEX =
  * @param {string} url
  * @returns {boolean}
  */
-export function isYouTubeVideoUrl(url) {
+export function isYouTubeVideoUrl(url: string): boolean {
   return YOUTUBE_VIDEO_REGEX.test(url);
 }

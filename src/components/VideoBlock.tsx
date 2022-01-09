@@ -10,7 +10,7 @@ const YOUTUBE_OPTIONS: YouTubeVideoOptions = {
 };
 
 interface IProps {
-    videoId: string;
+    videoId?: string;
     wasInvalidTry: boolean;
 }
 
@@ -26,7 +26,7 @@ export function VideoBlock(props: IProps) {
         >
             {props.videoId ? (
                 <YouTube
-                    videoId={props.videoId ?? undefined}
+                    videoId={props.videoId}
                     opts={YOUTUBE_OPTIONS}
                     className="flex-grow max-w-full"
                 />
