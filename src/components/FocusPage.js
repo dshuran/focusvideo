@@ -37,7 +37,7 @@ export default function FocusPage({ url }) {
     : "";
 
   return (
-    <div className="bg-gray-800 flex justify-center">
+    <div className="bg-neutral-800 flex justify-center">
       <div className="max-w-2xl flex-grow mt-10 flex flex-col">
         <span className="text-lg font-semibold text-yellow-500 pb-2 pl-4">
           Focus on youtube video without any distractions!
