@@ -28,7 +28,7 @@ export default function FocusPage({ url }: {url: string}) {
   }, [url, setYoutubeVideoUrl]);
 
   return (
-    <div className="bg-neutral-800 flex justify-center">
+    <div className="bg-neutral-800 flex justify-center grow">
       <div className="max-w-5xl flex-grow flex flex-col justify-center p-2">
         <UrlEdit handleInputChange={handleInputChange}/>
         <VideoBlock videoId={videoId} wasInvalidTry={wasInvalidTry}/>
